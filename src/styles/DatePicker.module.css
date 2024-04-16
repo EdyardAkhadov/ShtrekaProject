@@ -1,0 +1,78 @@
+.datepicker_container{
+  position: relative; 
+  margin: 20px 10px;
+}
+
+
+  
+.input{
+  width:430px;
+  height: 60px;
+  background-color: rgba(243, 228, 209);
+  border: none;
+  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom: 2px solid #15172b53;
+  text-align: center;
+  font-size: 30px;
+  transition: all 0.2s linear;
+}
+
+.placeholder {
+  left: 50%;
+  transform: translate(-50%, 0);
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  top: 20px;
+  transform: translateY(-40px) translateX(10px) scale(0.75);
+  font-size: 17px;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid #15172b;
+  background-color: rgba(243, 228, 209);
+  padding: 10px;
+  font-weight: 700;
+  color: #136809;
+  left: 5%;
+  font-size: 17px;
+  text-align: center;
+}
+
+.input:focus{
+  outline: none;
+  border-bottom: 2px solid #15172b;
+}
+
+.datepicker_container::after{
+  content: '';
+  background: url(public/dateIcon.png);
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 50px;
+  height: 58px;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  background-position: center;
+  display: inline-block;
+  border-top-right-radius: 10px;
+  background-color: rgba(243, 228, 209);
+}
+
+@media (max-width: 1770px) {
+  .datepicker_container{
+    width: 100%;
+  }
+  .input{
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .input{
+    font-size: 20px;
+  }
+}

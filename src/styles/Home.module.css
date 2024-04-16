@@ -1,0 +1,9 @@
+.Navbar{
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1200px) {
+    .Navbar{
+        margin-bottom: 30px;
+    }
+}

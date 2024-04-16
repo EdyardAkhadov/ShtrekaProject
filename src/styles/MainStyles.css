@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family: 'Comfortaa', cursive;
+}
+
+input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s !important;
+  }
