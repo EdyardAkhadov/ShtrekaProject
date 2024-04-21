@@ -1,0 +1,12 @@
+.PopularStationContainer{
+    margin:5% 10%;
+    border-radius: 5px;
+    border: 4px solid green;
+    height: 1000px;
+}
+
+.PopularStationHeader{
+    border-bottom: 4px solid green;
+    padding: 1%;
+    margin-bottom: 5px;
+}

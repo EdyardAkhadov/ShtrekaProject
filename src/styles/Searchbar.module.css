@@ -17,7 +17,7 @@
   width: 100%;
   background-color: #ffffff;
   position: absolute;
-  box-shadow: 0px 0px 30px 50px #ffffff;
+  box-shadow: 0px 0px 15px 30px #ffffff;
   z-index: 0;
 }
 
@@ -55,7 +55,7 @@
 .Controller__button__route, .Controller__button__station{
   margin-right: 10px;
   color: #414145;
-  background-color: #f3e4d1;
+  background-color: #ffffff;
   border-radius:10px;
   border: 3px inset #578b32;
   position: relative;
@@ -63,7 +63,10 @@
   padding: 5px;
   padding-left: 40px;
   font-weight: 900;
+  cursor: pointer;
+  margin-bottom: 5px;
 }
+
 
 .Controller__button__station::before{
   content: '';
@@ -123,22 +126,24 @@
   content: '';
   background: url(public/fromIcon.png);
   position: absolute;
-  right: 0px;
+  top: 2px;
+  right: 2px;
   width: 50px;
   height: 58px;
   background-repeat: no-repeat;
   background-size: 40px 40px;
   background-position: center;
   display: inline-block;
-  border-top-right-radius: 10px;
-  background-color: #f3e4d1;
+  border-top-right-radius: 20px;
+  background-color: #ffffff;
 }
 
 .input_container__to::after{
   content: '';
   background: url(public/toIcon.png);
   position: absolute;
-  right: 0px;
+  top: 2px;
+  right: 2px;
   width: 50px;
   height: 58px;
   background-repeat: no-repeat;
@@ -146,19 +151,19 @@
   background-position: center;
   display: inline-block;
   border-top-right-radius: 10px;
-  background-color: #f3e4d1;
+  background-color: #ffffff;
 }
 
 
 .input{
   width:430px;
   height: 60px;
-  background-color: rgba(243, 228, 209);
+  background-color: №ffffff;
   border: none;
   border-radius: 10px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-bottom: 2px solid #15172b53;
+  border: 2px solid #15172b53;
   text-align: center;
   font-size: 30px;
   transition: all 0.2s linear;
@@ -175,19 +180,18 @@
   position: absolute;
   transform-origin: 0 50%;
   transition: all 200ms, color 200ms;
-  top: 20px;
+  top: 27.5px;
 }
 
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder {
   transform: translateY(-40px) translateX(10px) scale(0.75);
-  font-size: 17px;
+  font-size: 20px;
   text-align: center;
-  border-radius: 10px;
-  background-color: rgba(243, 228, 209);
-  border: 2px solid #15172b;
+  border-radius: 20px;
+  background-color: #ffffff;
   font-weight: 700;
-  padding: 10px;
+  padding: 7px;
 }
 
 .input:not(:placeholder-shown) ~ .placeholder {
@@ -204,7 +208,7 @@
 
 .input:focus{
   outline: none;
-  background-color: rgb(243, 228, 209);
+  background-color: #ffffff;
   border-bottom: 2px solid #15172b;
 }
 
@@ -225,6 +229,8 @@
 
 .Searchbar__button:hover{
   font-size: 33px;
+  background-color: #e0f3d1;
+  cursor: pointer;
 }
 
 /* MEDIA */
