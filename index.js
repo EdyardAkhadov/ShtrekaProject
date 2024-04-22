@@ -1,38 +1,52 @@
 import express from 'express';
-import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose';
-import {registerValidation} from './server/validations/authValid.js';
-import { validationResult } from 'express-validator';
-import UserModel from './server/models/User.js';
+import multer from 'multer';
+
+import {registerValidation, loginValidation, postCreateValidation} from './server/validations/validations.js';
+import {checkAuth, handleValidationErrors} from './server/midleware/indexMidleware.js';
+import {UserController,PostController}  from './server/controllers/indexControllers.js';
+
 
 mongoose
-    .connect('mongodb+srv://akhadoveduard:MoyParo1@shtrekadb.ugnhe5j.mongodb.net/?retryWrites=true&w=majority&appName=ShtrekaDB',)
+    .connect('mongodb+srv://akhadoveduard:MoyParo1@shtrekadb.ugnhe5j.mongodb.net/ShtrekaDB?retryWrites=true&w=majority&appName=ShtrekaDB',)
     .then(() => console.log("DB is starting!"))
     .catch((err) => console.log('DB error!', err));
 
 const app = express();
 
-app.use(express.json());
-
-app.post('/auth/register', registerValidation,  (req, res) => {
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        return res.status(400).json(errors.array());
-    }
-
-    const doc = new UserModel({
-        email: re
-    })
-
-    res.json({
-        success: true,
-    })
+const storage = multer.diskStorage({
+    destination:(_, __, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (_, file, cb) => {
+        cb(null, file.originalname);
+    },
 });
+
+const upload = multer({storage});
+
+app.use(express.json());
+app.use('/uploads', express.static('uploads'))
+
+app.post('/auth/login', loginValidation, handleValidationErrors , UserController.login)
+app.post('/auth/register',  registerValidation, handleValidationErrors , UserController.register);
+app.get('/auth/me', checkAuth, UserController.getMe)
+
+app.post('/upload', checkAuth, upload.single('image'), (req, res)=>{
+    res.json({
+        url: `/uploads/${req.file.originalname}`,
+    });
+});
+
+app.get('/posts', PostController.getAll);
+app.get('/posts/:id', PostController.getOne);
+app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors , PostController.create);
+app.delete('/posts/:id',checkAuth, PostController.remove);
+app.patch('/posts/:id',checkAuth, handleValidationErrors , PostController.update);
 
 app.listen(4444, (err)=>{
     if(err){
         return console.log(err);
     }
-
     console.log('Server is starting!')
 });

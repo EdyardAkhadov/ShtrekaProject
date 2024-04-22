@@ -28,13 +28,6 @@ export default function SearchBar() {
           </div>
           <div className={styles.Searchbar__gets}>
             <div className={styles.input_container__from}>
-              <input id="email" type="email" placeholder=" " 
-                     className={styles.input}  
-                     onChange={e => setEmail(e.target.value)} value={email}/>
-              <label htmlFor="email" className= {styles.placeholder}>email</label>
-            </div>
-
-            <div className={isReg ? styles.input_container__from : styles.invisible }>
               <input id="phoneNumber" type="text" placeholder=" " 
                      className={styles.input}  
                      onChange={e => setPhoneNumber(e.target.value)} value={phoneNumber}/>
