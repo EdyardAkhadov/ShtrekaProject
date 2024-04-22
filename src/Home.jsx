@@ -1,7 +1,7 @@
-import styles from '../styles/Home.module.css'
-import Navbar from '../components/navbar/Navbar'
-import SearchBar from '../components/searchbar/SearchBar'
-import PopularStation from '../components/popularroutes/PopularRoutes'
+import styles from './styles/Home.module.css'
+import Navbar from './components/navbar/Navbar'
+import SearchBar from './components/searchbar/SearchBar'
+import PopularStation from './components/popularroutes/PopularRoutes'
 
 function Home() {
   return (

@@ -66,6 +66,7 @@
     flex-wrap: wrap;
   }
   
+
   /* INPUT STYLES */
   .input_container__from, .input_container__to, .input_container__date {
     position: relative;

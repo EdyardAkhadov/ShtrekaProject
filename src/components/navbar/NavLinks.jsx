@@ -9,7 +9,7 @@ const NavLinks = () => {
             <Link to="/" className={styles.Links__button}>Розклад</Link>
         </li>
         <li>
-            <Link to="/Client" className={styles.Links__button}>Особистий кабінет</Link>
+            <Link to="/login" className={styles.Links__button}>Особистий кабінет</Link>
         </li>
   </ul>
   )
