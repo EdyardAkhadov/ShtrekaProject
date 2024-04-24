@@ -79,8 +79,8 @@ a::after {
     font-weight: 900;
     padding: 10px 40px;
     background-color: #fff;
-    border: 2px solid #ee2121;
-    color: #ee2121;
+    border: 2px solid #b68947;
+    color: #b68947;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s linear;
@@ -88,7 +88,7 @@ a::after {
 
 .logout_button:hover{
     color: #fff;
-    background-color: #ee2121;
+    background-color: #b68947;
 }
 
 

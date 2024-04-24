@@ -5,10 +5,10 @@ import Navigation from './Navigation';
 import logo from '/public/logo.png';
 import { Link } from 'react-router-dom';
 
-function Navibar() {
+function Navbar() {
   
   return (
-    <div className={styles.Navbar}>
+    <div className={styles.Navibar}>
       <Link to="/"><img src={logo} alt="STREKA" className={styles.Logo}/></Link>
       <Navigation/>
       <MobileNavigation/>
@@ -16,5 +16,5 @@ function Navibar() {
   )
 }
 
-export default Navibar
+export default Navbar
 
