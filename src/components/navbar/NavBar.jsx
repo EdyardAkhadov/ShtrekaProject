@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   
   return (
-    <div className={styles.Navibar}>
+    <div className={styles.Navbar}>
       <Link to="/"><img src={logo} alt="STREKA" className={styles.Logo}/></Link>
       <Navigation/>
       <MobileNavigation/>
