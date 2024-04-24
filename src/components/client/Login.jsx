@@ -1,46 +1,89 @@
-import React, { useState } from 'react'
-import styles from '/src/components/client/Client.module.css'
-import Navbar from '/src/components/navbar/NavBar.jsx'
-import { Link } from 'react-router-dom';
-import "react-datepicker/dist/react-datepicker.css";
-import { render } from 'react-dom';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {Link, Navigate} from 'react-router-dom';
+import Navbar from '/src/components/navbar/NavBar.jsx';
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import styles from "./Login.module.css";
+import {useForm} from 'react-hook-form'
+import { fetchAuth, selectIsAuth } from '../../redux/slices/auth';
 
-export default function SearchBar() {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [isReg, setReg] = useState(false);
+export default function Login() {
+  const isAuth = useSelector(selectIsAuth)
+  const dispatch = useDispatch();
   
+  const {
+    register, 
+    handleSubmit, 
+    formState:{errors, isValid},
+  } = useForm({
+    defaultValues:{
+      phoneNumber: '',
+      password: '',
+    }
+  })
+
+const onSubmit = async(values) => {
+  const data = await dispatch(fetchAuth(values))
+  if(!data.payload){
+    alert('Не вдалося авторизуватись!');
+  }
+  if('token' in data.payload){
+    window.localStorage.setItem('token', data.payload.token);
+  } 
+}
+
+if(isAuth){
+  return <Navigate to="/"/>;
+}
 
   return (
     <div>
        <Navbar/>
-      <div className={styles.Searchbar}>
-        <div className={styles.Searchbar__items}>
-          <div className={styles.Searchbar__controller}>
-            <button onClick={() => setReg(false)} 
-                    className={styles.Controller__button__station} 
-                    style={{backgroundColor:"#e0f3d1", color:"#578b32"}}>Вхід</button>
-            <Link to="/registration"><button onClick={() => setReg(true)} 
-                    className={styles.Controller__button__route} >Реєстрація</button></Link>
-          </div>
-          <div className={styles.Searchbar__gets}>
-            <div className={styles.input_container__from}>
-              <input id="phoneNumber" type="text" placeholder=" " 
-                     className={styles.input}  
-                     onChange={e => setPhoneNumber(e.target.value)} value={phoneNumber}/>
-              <label htmlFor="phoneNumber" className= {styles.placeholder}>Телефон</label>
-            </div>
-            
-            <div className={styles.input_container__from}>
-              <input id="password" type="password" placeholder=" " 
-                     className={styles.input}  
-                     onChange={e => setPassword(e.target.value)} value={password}/>
-              <label htmlFor="password" className= {styles.placeholder}>Пароль</label>
-            </div>
-            <Link className={styles.link__button }><button className={isReg ? styles.invisible : styles.Searchbar__button}>Вхід</button></Link>
-          </div>
+       <Paper classes={{ root: styles.root }}>
+        <div className={styles.LogOrReg}>
+          <Typography classes={{ root: styles.title }} variant="h5">
+            Вхід в аккаунт
+          </Typography>
+          <p>або</p>
+          <Link to="/registration"><p className={styles.Reg}>Реєстрація</p></Link>
         </div>
-      </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.inputs}>
+          <TextField
+          className={styles.field}
+          label="Номер телефону"
+          color='success'
+          error={Boolean(errors.phoneNumber?.message)}
+          helperText={ errors.phoneNumber?.message }
+          {...register('phoneNumber', {required:'Вкажіть номер телефону!'})}
+          fullWidth/>
+        </div>
+
+        <div className={styles.inputs}>
+          <TextField 
+          color='success' 
+          className={styles.field} 
+          label="Пароль" 
+          error={Boolean(errors.password?.message)}
+          helperText={ errors.password?.message }
+          {...register('password', {required:'Вкажіть пароль!'})}
+          fullWidth />
+        </div>
+        <div className={styles.button} >
+          <Button 
+            style={{backgroundColor:"#254d09", color:"#ffffff"}} 
+            type='submit'
+            size="large" 
+            variant="contained" 
+            fullWidth>
+             Увійти
+          </Button>
+        </div>
+        </form>
+    </Paper>
     </div>
   )
 }

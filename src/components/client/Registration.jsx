@@ -1,53 +1,114 @@
-import React, { useState } from 'react'
-import styles from '/src/components/client/Client.module.css'
+import styles from "./Login.module.css";
 import Navbar from '/src/components/navbar/NavBar.jsx'
-import { Link } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
-import { render } from 'react-dom';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import { Link, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRegister, selectIsAuth } from '../../redux/slices/auth';
+import { useForm } from "react-hook-form";
 
-export default function SearchBar() {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [checkPassword, checkedPassword] = useState('');
-  const [password, setPassword] = useState('');
+export default function Registration() {
+    const isAuth = useSelector(selectIsAuth)
+    const dispatch = useDispatch();
+    
+    const {
+      register, 
+      handleSubmit, 
+      formState:{errors, isValid},
+    } = useForm({
+      defaultValues:{
+        secondName: 'Ахадов',
+        firstName: 'Едуард',
+        phoneNumber: '0688055268',
+        password: '123456',
+      }
+    })
+  
+    const onSubmit = async(values) => {
+      const data = await dispatch(fetchRegister(values))
+      if(!data.payload){
+        alert('Не вдалося зареєструватися!');
+      }
+
+      if('token' in data.payload){
+        window.localStorage.setItem('token', data.payload.token);
+      } 
+    }
+    
+    if(isAuth){
+      return <Navigate to="/"/>;
+    }
 
   return (
     <div>
        <Navbar/>
-      <div className={styles.Searchbar}>
-        <div className={styles.Searchbar__items}>
-          <div className={styles.Searchbar__controller}>
-            <Link to={'/login'}><button className={styles.Controller__button__station}>Вхід</button></Link>
-            <button onClick={() => setReg(true)} 
-                    className={styles.Controller__button__route} 
-                    style={{backgroundColor:"#e0f3d1", color:"#578b32"}} >Реєстрація</button>   
-          </div>
-          <div className={styles.Searchbar__gets}>
-            <div className={styles.input_container__from}>
-              <input id="phoneNumber" type="text" placeholder=" " 
-                     className={styles.input}  
-                     onChange={e => setPhoneNumber(e.target.value)} value={phoneNumber}/>
-              <label htmlFor="phoneNumber" className= {styles.placeholder}>Телефон</label>
-            </div>
-            
-            <div className={styles.input_container__from}>
-              <input id="password" type="password" placeholder=" " 
-                     className={styles.input}  
-                     onChange={e => setPassword(e.target.value)} value={password}/>
-              <label htmlFor="password" className= {styles.placeholder}>Пароль</label>
-            </div>
-            
-            <div className={styles.input_container__from}>
-              <input id="checkPassword" type="password" placeholder=" " 
-                     className={styles.input}  
-                     onChange={e => checkedPassword(e.target.value)} value={checkPassword}/>
-              <label htmlFor="checkPassword" className= {styles.placeholder} style={{fontSize:"20px"}}>Повторіть пароль</label>
-            </div>
-            
-            <Link className={styles.link__button } ><button className={styles.Searchbar__button}>Реєстрація</button></Link>
-          
-          </div>
+       <Paper classes={{ root: styles.root }}>
+       <div className={styles.LogOrReg}>
+          <Typography classes={{ root: styles.title }} variant="h5">
+            Реєстрація
+          </Typography>
+          <p>або</p>
+          <Link to="/login"><p className={styles.Reg}>Вхід в аккаунт</p></Link>
         </div>
-      </div> 
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.inputs}>
+            <TextField
+            className={styles.field}
+            label="Прізвище"
+            color='success'
+            error={Boolean(errors.secondName?.message)}
+            helperText={ errors.secondName?.message }
+            {...register('secondName', {required:'Вкажіть прізвище!'})}
+            fullWidth/>
+          </div>
+
+          <div className={styles.inputs}>
+            <TextField
+            className={styles.field}
+            label="Ім'я"
+            color='success'
+            error={Boolean(errors.firstName?.message)}
+            helperText={ errors.firstName?.message }
+            {...register('firstName', {required:'Вкажіть ім`я!'})}
+            fullWidth/>
+          </div>
+
+          <div className={styles.inputs}>
+            <TextField
+            className={styles.field}
+            label="Номер телефону"
+            color='success'
+            error={Boolean(errors.phoneNumber?.message)}
+            helperText={ errors.phoneNumber?.message }
+            {...register('phoneNumber', {required:'Вкажіть номер телефону!'})}
+            fullWidth/>
+          </div>
+
+          <div className={styles.inputs}>
+            <TextField
+            className={styles.field}
+            label="Пароль"
+            color='success'
+            error={Boolean(errors.password?.message)}
+            helperText={ errors.password?.message }
+            {...register('password', {required:'Вкажіть пароль!'})}
+            fullWidth/>
+          </div>
+
+        <div className={styles.button} >
+          <Button 
+          style={{backgroundColor:"#254d09", color:"#ffffff"}} 
+          type='submit' 
+          size="large" 
+          variant="contained" 
+          fullWidth>
+          Зареєструватись
+        </Button></div>
+      </form>
+    </Paper>
     </div>
   )
 }
