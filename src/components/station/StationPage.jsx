@@ -27,7 +27,8 @@ export default function StationPage() {
     <div>
         <Navbar/>
         <div>
-            </div>
+          {isLoading ? <div>завантаження</div> : <div>{station.date}</div>}
+        </div>
     </div>
   )
 }
