@@ -10,26 +10,73 @@ export default function StationPage() {
     const [station, setStation] = useState();
     const [isLoading, setLoading] = useState(true);
 
-
-
-  useEffect(() => {
+useEffect(() => {
+      const fetchResource = async () => {
           axios
           .get(`/stations/${stationName}`)
           .then((res) => {
             setStation(res.data);
-            console.log(station.date);
             setLoading(false);
           })
           .catch((err) => {
             console.log(err);
           })
-    }, [station])
-    
+      }
+      fetchResource()
+    }, [isLoading])
+
   return (
     <div>
         <Navbar/>
         <div>
-          {isLoading ? <div>завантаження</div> : <div>{station.stationName}</div>}
+         <div className={styles.wrapper}>
+          <h2 className={styles.title}>Розклад для станції {isLoading ? <>завантаження</> : <>{station.stationName}</>}</h2>
+          <div className={styles.routes__container}>  
+          <p className={styles.block_title}>Відправки з {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
+            <div className={styles.arrival}>
+              
+              <div className={styles.table__header}>
+                <p className={styles.Header__item}>Номер потягу</p>
+                <p className={styles.Header__item}>Станція відправки</p>
+                <p className={styles.Header__item}>Станція прибуття</p>
+                <p className={styles.Header__item}>Час відправки з {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
+              </div>
+                {isLoading ? <>завантаження</> : station.routes.map(stationData => {
+                  if(stationData.status === "arrival"){
+                    return(
+                      <div className={styles.route__block}>
+                        <div className={styles.row}>{stationData.number}</div>
+                        <div className={styles.row}>{stationData.from}</div>
+                        <div className={styles.row}>{stationData.to}</div>
+                        <div className={styles.row}>{stationData.time}</div>
+                      </div>
+                    )
+                  }              
+                })}
+            </div>
+            <p className={styles.block_title}>Прибуття на {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
+            <div className={styles.departure}>        
+              <div className={styles.table__header}>
+                <p className={styles.Header__item}>Номер потягу</p>
+                <p className={styles.Header__item}>Станція відправки</p>
+                <p className={styles.Header__item}>Станція прибуття</p>
+                <p className={styles.Header__item}>Час прибуття на {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
+              </div>
+                {isLoading ? <>завантаження</> : station.routes.map(stationData => {
+                  if(stationData.status === "departure"){
+                    return(
+                      <div className={styles.route__block}>
+                        <div className={styles.row}>{stationData.number}</div>
+                        <div className={styles.row}>{stationData.from}</div>
+                        <div className={styles.row}>{stationData.to}</div>
+                        <div className={styles.row}>{stationData.time}</div>
+                      </div>
+                    )
+                  }              
+                })}
+          </div>
+        </div>
+        </div>
         </div>
     </div>
   )

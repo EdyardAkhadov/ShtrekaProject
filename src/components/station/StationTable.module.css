@@ -1,7 +1,6 @@
 .wrapper{
     display: flex;
     width: 100%;
-    padding:40px 10%;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -85,7 +84,6 @@
 @media (max-width:1200px) {
 
     .wrapper{
-        padding: 10% 2%;
     }
     .routes__container{
         min-width: 500px;
@@ -141,14 +139,14 @@
 @media (max-width:659px) {
     .routes__container{
         min-width: 250px;
-        width: 100%;
+        width: 93%;
     }
 }
 
 @media (max-width:350px) {
     .routes__container{
         min-width: 250px;
-        width: 100%;
+        width: 75%;
     }
 
     .row{
