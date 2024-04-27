@@ -7,7 +7,7 @@ import Login from '../client/Login'
 import Registration from '../client/Registration'
 import { fetchAuthMe, selectIsAuth } from '../../redux/slices/auth';
 import ChooseTicket from '../chooseTicket/ChooseTicket';
-import StationPage from '../station/stationPage';
+import StationPage from '../station/StationPage';
 
 const Router = () => {
 
