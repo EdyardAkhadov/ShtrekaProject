@@ -44,7 +44,7 @@ export default function SearchBar() {
                   style={isRoute ? {} : {backgroundColor:"#e0f3d1", color:"#578b32"} }>Вокзал</button>
           <button onClick={() => setIsRoute(true)} 
                   className={styles.Controller__button__route} 
-                  style={isRoute ? {backgroundColor:"#e0f3d1", color:"#578b32"} : {} } >Маршрут</button>   
+                  style={isRoute ? {backgroundColor:"#e0f3d1", color:"#578b32"} : {} }  >Маршрут</button>   
         </div>
         <div className={styles.Searchbar__gets}>
           <div className={styles.input_container__from}>
@@ -78,7 +78,7 @@ export default function SearchBar() {
             <label htmlFor="DatePicker" className={datePickerStyles.placeholder}>Дата:</label>
           </div>
 
-          <Link className={styles.link__button } to={`/Stations/${station1}`}><button className={isRoute ? styles.invisible : styles.Searchbar__button}>Пошук</button></Link>
+          <Link className={styles.link__button } to={`/station/${station1}`}><button className={isRoute ? styles.invisible : styles.Searchbar__button}>Пошук</button></Link>
           <Link className={styles.link__button } to={`/Route/${station1}/${station2}/${date}`}><button className={isRoute ? styles.Searchbar__button: styles.invisible}>Пошук</button></Link>
         
         </div>

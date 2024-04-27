@@ -7,6 +7,7 @@ import Login from '../client/Login'
 import Registration from '../client/Registration'
 import { fetchAuthMe, selectIsAuth } from '../../redux/slices/auth';
 import ChooseTicket from '../chooseTicket/ChooseTicket';
+import StationPage from '../station/stationPage';
 
 const Router = () => {
 
@@ -25,6 +26,7 @@ const Router = () => {
               <Route element={<Login/>} path="/login"/>
               <Route element={<Registration/>} path="/registration"/>
               <Route element={<ChooseTicket/>} path="/chooseticket"/>
+              <Route element={<StationPage/>} path="/station/:stationName"/>
               <Route path='*' element={<NotFound/>}/>
           </Routes>
   )
