@@ -6,7 +6,7 @@ import Navbar from '../navbar/NavBar'
 import axios from '../../axios'
 
 export default function StationPage() {
-    const {stationName} = useParams();
+  /*  const {stationName} = useParams();
     const [station, setStation] = useState();
     const [isLoading, setLoading] = useState(true);
 
@@ -20,14 +20,13 @@ export default function StationPage() {
       })
       .catch((err) => {
         console.log(err);
-      })
-    }, [])
+        {isLoading ? <div>завантаження</div> : <div>{station.stationName}
+      })*/
 
   return (
     <div>
         <Navbar/>
         <div>
-          {isLoading ? <div>завантаження</div> : <div>{station.date}</div>}
         </div>
     </div>
   )
