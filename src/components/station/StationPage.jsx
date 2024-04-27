@@ -10,19 +10,21 @@ export default function StationPage() {
     const [station, setStation] = useState();
     const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
-      axios
-      .get(`/stations/${stationName}`)
-      .then((res) => {
-        setStation(res.data);
-        console.log(station.date);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    }, [])
 
+
+  useEffect(() => {
+          axios
+          .get(`/stations/${stationName}`)
+          .then((res) => {
+            setStation(res.data);
+            console.log(station.date);
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+    }, [station])
+    
   return (
     <div>
         <Navbar/>
