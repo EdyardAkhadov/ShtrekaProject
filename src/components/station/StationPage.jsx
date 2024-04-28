@@ -29,9 +29,8 @@ useEffect(() => {
     <div>
         <Navbar/>
         <div>
-         <div className={styles.wrapper}>
-          <h2 className={styles.title}>Розклад для станції {isLoading ? <>завантаження</> : <>{station.stationName}</>}</h2>
-          <div className={styles.routes__container}>  
+         <div className={styles.wrapper} style={isLoading ? {backgroundColor : "white"} : {backgroundImage:`url(${station.stationImage})`}}>
+          <div className={styles.routes__container} >  
           <p className={styles.block_title}>Відправки з {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
             <div className={styles.arrival}>
               

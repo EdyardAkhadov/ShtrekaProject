@@ -3,7 +3,6 @@ import styles from '/src/styles/NavBar.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import {logout, selectIsAuth } from '../../redux/slices/auth';
 import { Link } from 'react-router-dom';
-import { fetchAuthMe } from '../../redux/slices/auth';
 
 const NavLinks = () => {
 
@@ -24,7 +23,7 @@ const NavLinks = () => {
             <Link to="/" className={styles.Links__button}>Розклад</Link>
         </li>
         <li>
-            <Link to="/me" className={styles.user__button}>{userData.firstName+" "+userData.secondName}</Link>
+            <Link to="/aboutMe" className={styles.user__button}>{userData.firstName+" "+userData.secondName}</Link>
         </li>
         <li className={styles.Links__button}><button onClick={onClickLogout} className={styles.logout_button} variant="contained" color="error">
                   Вийти

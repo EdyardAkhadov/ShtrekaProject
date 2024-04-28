@@ -65,34 +65,19 @@
   font-weight: 900;
   cursor: pointer;
   margin-bottom: 5px;
+  position: relative;
 }
 
 
-.Controller__button__station::before{
-  content: '';
-  background: url(public/stationIcon.png);
+.RouteAndStationIcon{
   position: absolute;
   top: 5px;
-  left: 5px;
-  width: 25px;
-  height: 25px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: inline-block;
+  left: 6px;
+  width: 28px;
+  height: 28px;
 }
 
-.Controller__button__route::before{
-  content: '';
-  background: url(public/routeIcon.png);
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 25px;
-  height: 25px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: inline-block;
-}
+
 
 .Searchbar__controller{
   width: 100%;
@@ -122,37 +107,14 @@
 }
 
 
-.input_container__from::after{
-  content: '';
-  background: url(public/fromIcon.png);
+.FromAndToIcons{
   position: absolute;
-  top: 2px;
+  top: 7px;
   right: 2px;
   width: 50px;
-  height: 58px;
-  background-repeat: no-repeat;
-  background-size: 40px 40px;
-  background-position: center;
-  display: inline-block;
-  border-top-right-radius: 20px;
-  background-color: #ffffff;
+  height: 50px;
 }
 
-.input_container__to::after{
-  content: '';
-  background: url(public/toIcon.png);
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 50px;
-  height: 58px;
-  background-repeat: no-repeat;
-  background-size: 40px 40px;
-  background-position: center;
-  display: inline-block;
-  border-top-right-radius: 10px;
-  background-color: #ffffff;
-}
 
 
 .input{

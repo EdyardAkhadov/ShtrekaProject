@@ -8,6 +8,11 @@ import datePickerStyles from '/src/styles/DatePicker.module.css'
 registerLocale('uk', uk)
 import "react-datepicker/dist/react-datepicker.css";
 import backgroundSearchbar from '/public/backgroundSearchbar.png'
+import stationIcon from '/public/stationIcon.png'
+import routeIcon from '/public/routeIcon.png'
+import fromIcon from '/public/fromIcon.png'
+import toIcon from '/public/toIcon.png'
+import dateIcon from '/public/dateIcon.png'
 import { render } from 'react-dom';
 
 export default function SearchBar() {
@@ -39,12 +44,18 @@ export default function SearchBar() {
     <div className={styles.Searchbar} style={{backgroundImage:`url(${backgroundSearchbar})`}}>
       <div className={styles.Searchbar__items}>
         <div className={styles.Searchbar__controller}>
-          <button onClick={() => setIsRoute(false)} 
+          <div style={{position: "relative"}}>
+                  <button onClick={() => setIsRoute(false)} 
                   className={styles.Controller__button__station} 
                   style={isRoute ? {} : {backgroundColor:"#e0f3d1", color:"#578b32"} }>Вокзал</button>
+                  <img src={stationIcon} alt="stationIcon" className={styles.RouteAndStationIcon}/>
+          </div>
+          <div style={{position: "relative"}}>
           <button onClick={() => setIsRoute(true)} 
                   className={styles.Controller__button__route} 
-                  style={isRoute ? {backgroundColor:"#e0f3d1", color:"#578b32"} : {} }  >Маршрут</button>   
+                  style={isRoute ? {backgroundColor:"#e0f3d1", color:"#578b32"} : {} }  >Маршрут</button>
+                  <img src={routeIcon} alt="routeIcon" className={styles.RouteAndStationIcon}/>
+          </div>
         </div>
         <div className={styles.Searchbar__gets}>
           <div className={styles.input_container__from}>
@@ -52,7 +63,7 @@ export default function SearchBar() {
             <input id="from" type="text" placeholder=" " 
                    className={styles.input}  
                    onChange={e => setStation1(e.target.value)} value={station1}/>
-
+            <img src={fromIcon} alt="fromIcon" className={styles.FromAndToIcons}/>
             <label htmlFor="from" className= {isRoute ? styles.placeholder__no : styles.placeholder}>Вокзал</label>
             <label htmlFor="from" className={isRoute ? styles.placeholder : styles.placeholder__no}>Звідки?</label>
           </div>
@@ -61,6 +72,7 @@ export default function SearchBar() {
             <input id="to" type="text" placeholder=" " 
                    className={styles.input}  
                    onChange={e => setStation2(e.target.value)} value={station2}/>
+                   <img src={toIcon} alt="toIcon" className={styles.FromAndToIcons}/>
             <label htmlFor="to" className={styles.placeholder}>Куди?</label>
           </div>
           
@@ -75,6 +87,7 @@ export default function SearchBar() {
                 withPortal
                 placeholderText='Дата'                
             />
+            <img src={dateIcon} alt="dateIcon" className={datePickerStyles.datepicker_icon}/>
             <label htmlFor="DatePicker" className={datePickerStyles.placeholder}>Дата:</label>
           </div>
 
