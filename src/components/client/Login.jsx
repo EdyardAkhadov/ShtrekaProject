@@ -38,7 +38,6 @@ const onSubmit = async(values) => {
 if(isAuth){
   return <Navigate to="/"/>;
 }
-
   return (
     <div>
        <Navbar/>

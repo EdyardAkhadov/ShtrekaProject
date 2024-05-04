@@ -20,10 +20,10 @@ export default function Registration() {
       formState:{errors, isValid},
     } = useForm({
       defaultValues:{
-        secondName: 'Ахадов',
-        firstName: 'Едуард',
-        phoneNumber: '0688055268',
-        password: '123456',
+        secondName: '',
+        firstName: '',
+        phoneNumber: '',
+        password: '',
       }
     })
   

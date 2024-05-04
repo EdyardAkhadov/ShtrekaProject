@@ -1,0 +1,195 @@
+.container{
+    margin: 0;
+    background-size: cover ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.container h2{
+    text-align: center;
+}
+
+.table{
+    margin: 10px;
+}
+
+.stationTable{
+    display: grid;
+    grid-template-columns: 15% 45% 20% 20%;
+    justify-content: space-around;
+}
+
+.stationTableAfter{
+    display: grid;
+    grid-template-columns: 15% 55% 30% ;
+    justify-content: space-around;
+}
+
+.stationInfo, 
+.stationInfoHeader, 
+.stationFromTo,
+.stationInfoButton{
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid;
+}
+
+.stationInfoHeader {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.trainInformationBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trainInformation{
+    text-align: center;
+    margin: 5px;
+    font-size: 20px;
+}
+
+
+.stationInfo, .stationFromTo,
+.stationInfoButton{
+    padding: 10px;
+}
+
+.stationInfoButton{
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    color: #034b03;
+}
+
+.stationInfoButton:disabled{
+    cursor: auto;
+    display: none;
+}
+
+
+
+.stationInfoButton:hover{
+    color: #fff;
+    background-color: #034b03;
+    border-color: #034b03;
+}
+
+.userData{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 5px;
+    border: 3px solid;
+    border-radius: 10px;
+}
+
+.userData label{
+    font-size: 20px;
+}
+
+.userData input{
+    margin: 5px 0px;
+    font-size: 18px;
+    
+}
+
+.dates{
+    text-align: center;
+    border: 3px solid;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.dateButton, .chosenButton{
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid ;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chosenButton{
+    background-color: #99cf8e;
+    font-weight: bold;
+}
+
+.stationFromTo{
+    background-color: #99cf8e;
+}
+
+.ticket{
+    min-width: 300px;
+    background-color: rgba(243, 239, 233, 0.959);
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border: 4px solid ;
+}
+
+.ticket h3{
+    align-self: center;
+}
+
+.ticketInfo{
+    width: 100%;
+    position: relative;
+    line-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+}
+
+.ticketParam{
+    font-weight: bolder;
+    padding-right: 10px;
+    text-align: start;
+}
+
+.ticketData{
+    text-align: end;
+    padding-left: 10px;
+}
+
+.ticketButtons{
+    padding: 5px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.delete, .submit{
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+    border: 3px solid;
+    transition: all 0.2s linear;
+}
+
+.delete{
+    color: #c53434;
+}
+
+.submit{
+    color: #578b32;
+}
+
+.submit:hover, .delete:hover{
+    font-size: 15px;
+}
+

@@ -4,11 +4,20 @@ import { useEffect } from 'react'
 import styles from './StationTable.module.css'
 import Navbar from '../navbar/NavBar'
 import axios from '../../axios'
+import { Link } from 'react-router-dom';
+import NotFound from '../router/NotFound'
+import Loader from '../loader/Loader'
+
+import {useSelector } from 'react-redux';
+
+import {selectIsAuth } from '../../redux/slices/auth';
 
 export default function StationPage() {
     const {stationName} = useParams();
     const [station, setStation] = useState();
     const [isLoading, setLoading] = useState(true);
+    const isAuth = useSelector(selectIsAuth);
+    const userData = useSelector(state => state.auth.data);
 
 useEffect(() => {
       const fetchResource = async () => {
@@ -16,38 +25,51 @@ useEffect(() => {
           .get(`/stations/${stationName}`)
           .then((res) => {
             setStation(res.data);
-            setLoading(false);
+            setTimeout(()=>{
+              setLoading(false);
+            }, 500)
           })
           .catch((err) => {
-            console.log(err);
+            console.log("err");
           })
       }
       fetchResource()
     }, [isLoading])
+    
 
-  return (
+  if(station === "Cтанції не існує"){
+    return isLoading ? (<Loader/>) : ( <NotFound/> )
+  }else{
+  return isLoading ? (<Loader/>) : (
     <div>
         <Navbar/>
         <div>
-         <div className={styles.wrapper} style={isLoading ? {backgroundColor : "white"} : {backgroundImage:`url(${station.stationImage})`}}>
+         <div className={styles.wrapper} style={{backgroundImage:`url(${station.stationImage})`}}>
           <div className={styles.routes__container} >  
-          <p className={styles.block_title}>Відправки з {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
+          <p className={styles.block_title}>Відправки з {station.stationName}</p>
             <div className={styles.arrival}>
               
               <div className={styles.table__header}>
                 <p className={styles.Header__item}>Номер потягу</p>
                 <p className={styles.Header__item}>Станція відправки</p>
                 <p className={styles.Header__item}>Станція прибуття</p>
-                <p className={styles.Header__item}>Час відправки з {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
+                <p className={styles.Header__item}>Час відправки з {station.stationName}</p>
+                
+                <p className={styles.Header__item}>Придбайте квиток</p>
               </div>
-                {isLoading ? <>завантаження</> : station.routes.map(stationData => {
-                  if(stationData.status === "arrival"){
+                {station.routes.map(stationData => {
+                  if(stationData.status === "departure"){
                     return(
                       <div className={styles.route__block}>
                         <div className={styles.row}>{stationData.number}</div>
                         <div className={styles.row}>{stationData.from}</div>
                         <div className={styles.row}>{stationData.to}</div>
                         <div className={styles.row}>{stationData.time}</div>
+                        <Link 
+                          to={!isAuth ? `/login` : `/route/${stationData.from}/${stationData.to}`} 
+                          style={{textDecoration: "none"}}>
+                            <div className={styles.buy_button}>{!isAuth ? "Увійти в аккаунт" : "Придбати квиток"}</div>
+                        </Link>
                       </div>
                     )
                   }              
@@ -60,15 +82,21 @@ useEffect(() => {
                 <p className={styles.Header__item}>Станція відправки</p>
                 <p className={styles.Header__item}>Станція прибуття</p>
                 <p className={styles.Header__item}>Час прибуття на {isLoading ? <>завантаження</> : <>{station.stationName}</>}</p>
+                <p className={styles.Header__item}>Придбайте квиток</p>
               </div>
-                {isLoading ? <>завантаження</> : station.routes.map(stationData => {
-                  if(stationData.status === "departure"){
+                {station.routes.map(stationData => {
+                  if(stationData.status === "arrival"){
                     return(
                       <div className={styles.route__block}>
                         <div className={styles.row}>{stationData.number}</div>
                         <div className={styles.row}>{stationData.from}</div>
                         <div className={styles.row}>{stationData.to}</div>
                         <div className={styles.row}>{stationData.time}</div>
+                        <Link 
+                          to={!isAuth ? `/login` : `/route/${stationData.from}/${stationData.to}`} 
+                          style={{textDecoration: "none"}}>
+                            <div className={styles.buy_button}>{!isAuth ? "Увійти в аккаунт" : "Придбати квиток"}</div>
+                          </Link>
                       </div>
                     )
                   }              
@@ -79,4 +107,5 @@ useEffect(() => {
         </div>
     </div>
   )
+}
 }
