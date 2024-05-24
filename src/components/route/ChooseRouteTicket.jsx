@@ -15,8 +15,6 @@ export default function ChooseRouteTicket() {
     const [isLoading, setLoading] = useState(true);
     const [submitLoading, setSubmitLoading] = useState(false)
 
-
-
     const [passengerName, setPassengerName] = useState('');
     const [passengerSecondName, setPassengerSecondName] = useState('');
     const [fromStation, setFromStation] = useState('');
@@ -37,10 +35,18 @@ export default function ChooseRouteTicket() {
     const [isTomorrow, setIsTomorrow] = useState(false);
 
   const nowDate = new Date();
-  const nowDay = "0" + nowDate.getDate();
-  const nextDay = "0" + (1+nowDate.getDate());
+  let nowDay = nowDate.getDate();
+  let nextDay = (1+nowDate.getDate());
 
   let nowMonth = nowDate.getMonth()
+
+  if(nowDay < 10){
+    nowDay = "0" + nowDay;
+  }
+
+  if(nextDay < 10){
+    nextDay = "0" + nextDay;
+  }
 
   if(nowMonth + 1 >= 10){
     nowMonth += 1;
@@ -94,6 +100,8 @@ function deleteTicket(){
         setSubmitLoading(true);
 
         const fields = {
+          passengerName,
+          passengerSecondName,
           date,
           trainNumber,
           fromStation,
@@ -103,6 +111,8 @@ function deleteTicket(){
           price
         }
 
+        deleteTicket()
+        alert("Квиток успішно куплений. Ви можете знайти його у вашому особистолму кабінеті!")
         const{data} = await axios.post('/ticket', fields)
 
         const id = data._id;
@@ -225,6 +235,10 @@ function deleteTicket(){
           <div style={isToStation ? {} : {"display" : "none"}}>
             <dir className={styles.ticket}>
               <h3>Квиток</h3>
+              <div className={styles.ticketInfo}>
+                <p className={styles.ticketParam}>Прізвище та ім'я пасажира :</p>
+                <p className={styles.ticketData}>{passengerName} {passengerSecondName}</p>
+              </div>
               <div className={styles.ticketInfo}>
                 <p className={styles.ticketParam}>Дата відправки :</p>
                 <p className={styles.ticketData}>{date}</p>

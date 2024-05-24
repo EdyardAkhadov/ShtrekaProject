@@ -13,7 +13,7 @@ import {useSelector } from 'react-redux';
 import {selectIsAuth } from '../../redux/slices/auth';
 
 export default function StationPage() {
-    const {stationName} = useParams();
+    const {stationName, date} = useParams();
     const [station, setStation] = useState();
     const [isLoading, setLoading] = useState(true);
     const isAuth = useSelector(selectIsAuth);
@@ -22,7 +22,7 @@ export default function StationPage() {
 useEffect(() => {
       const fetchResource = async () => {
           axios
-          .get(`/stations/${stationName}`)
+          .get(`/stations/${stationName}/${date}`)
           .then((res) => {
             setStation(res.data);
             setTimeout(()=>{

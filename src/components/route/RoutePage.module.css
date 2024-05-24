@@ -1,0 +1,62 @@
+.wrapper{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px 0px;
+    position: relative;
+}
+
+.wagonNumbers{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.wagonNumber{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin: 0px 5px;
+}
+
+.trainMaket{
+    margin: 20px;
+    width: 200px;
+    border: 2px solid black;
+    flex-direction: row;
+    align-items:center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.seatButton{
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    position: relative;
+}
+
+.seatButton:nth-child(4n-2){
+    margin-right: 30px;
+}
+
+
+.seatButton input{
+    width: 30px;
+    height: 30px;
+}
+
+
+.chosenSeat{
+    background-color: aqua;
+}
+
+.passangerInfo{
+    background-color: aqua;
+}

@@ -91,8 +91,8 @@ export default function SearchBar() {
             <label htmlFor="DatePicker" className={datePickerStyles.placeholder}>Дата:</label>
           </div>
 
-          <Link className={styles.link__button } to={`/station/${station1}`}><button className={isRoute ? styles.invisible : styles.Searchbar__button}>Пошук</button></Link>
-          <Link className={styles.link__button } to={`/Route/${station1}/${station2}/${date}`}><button className={isRoute ? styles.Searchbar__button: styles.invisible}>Пошук</button></Link>
+          <Link className={styles.link__button } to={`/station/${station1}/${date}`}><button className={isRoute ? styles.invisible : styles.Searchbar__button}>Пошук</button></Link>
+          <Link className={styles.link__button } to={`/routes/${station1}/${station2}/${date}`}><button className={isRoute ? styles.Searchbar__button: styles.invisible}>Пошук</button></Link>
         
         </div>
       </div>

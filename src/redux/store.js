@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { postsReduser } from "./slices/post";
 import { authReducer } from "./slices/auth";
-import {stationsReduser} from "./slices/station"
+import {stationsReduser} from "./slices/station";
+import {ticketsReduser} from "./slices/tickets"
+import { routesReduser } from "./slices/routes";
 
 const store = configureStore({
     reducer:{
-        posts: postsReduser,
         auth: authReducer,
         stations: stationsReduser,
+        tickets: ticketsReduser,
+        routes: routesReduser,
     }
 });
 

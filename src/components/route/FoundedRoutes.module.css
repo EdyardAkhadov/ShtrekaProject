@@ -1,0 +1,56 @@
+.wrapper{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px 0px;
+    position: relative;
+}
+
+.routeStations{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.route{
+    padding: 10px;
+    border: 2px solid;
+    margin-top: 10px;
+}
+
+.line{
+    width: 40%;
+    height: 3px;
+    margin: 0px 10px;
+    background-color: #1a6e1a;
+    align-self: center;
+    position: relative;
+}
+
+.line::before{
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: -6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 3px solid #1a6e1a;
+}
+
+.line::after{
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: -6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #1a6e1a;
+    border: 3px solid #1a6e1a;
+}
