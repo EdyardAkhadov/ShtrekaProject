@@ -6,7 +6,8 @@ import Navbar from '../navbar/NavBar'
 import axios from '../../axios'
 import Loader from '../loader/Loader'
 import NotFound from '../router/NotFound'
-import TextField from "@mui/material/TextField";
+import mainStyles from '../../styles/MainStyles.module.css'
+import Footer from '../footer/Footer'
 
 
 export default function ChooseRouteTicket() {
@@ -127,7 +128,7 @@ function deleteTicket(){
     return isLoading ? (<Loader/>) : ( <NotFound/> )
   }else{
   return isLoading ? (<Loader/>) : (
-    <div>
+    <div className={mainStyles.wrapper}>
         <Navbar/>
         <div className={styles.container}>
           <h2>Маршрут {route.departureStation + " - " + route.arrivalStation}</h2>
@@ -275,6 +276,7 @@ function deleteTicket(){
             </dir>
           </div>
         </div>
+        <div className={mainStyles.Footer}><Footer/></div>
     </div>
   )
 }

@@ -8,9 +8,11 @@ import { Link } from 'react-router-dom';
 import NotFound from '../router/NotFound'
 import Loader from '../loader/Loader'
 
+import mainStyles from '../../styles/MainStyles.module.css'
 import {useSelector } from 'react-redux';
 
 import {selectIsAuth } from '../../redux/slices/auth';
+import Footer from '../footer/Footer'
 
 export default function StationPage() {
     const {stationName, date} = useParams();
@@ -41,7 +43,7 @@ useEffect(() => {
     return isLoading ? (<Loader/>) : ( <NotFound/> )
   }else{
   return isLoading ? (<Loader/>) : (
-    <div>
+    <div className={mainStyles.wrapper}>
         <Navbar/>
         <div>
          <div className={styles.wrapper} style={{backgroundImage:`url(${station.stationImage})`}}>
@@ -105,6 +107,8 @@ useEffect(() => {
         </div>
         </div>
         </div>
+        
+        <div className={mainStyles.Footer}><Footer/></div>
     </div>
   )
 }

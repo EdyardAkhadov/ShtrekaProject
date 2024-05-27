@@ -16,11 +16,42 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-.wagonNumber{
-    width: 20px;
-    height: 20px;
+
+.wagonMaket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 3px solid green;
+    position: relative;
+}
+
+.wagonMaket::before{
+    content: "Оберіть місце";
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    background-color: #ffffff;
+    padding: 1px;
+    border-radius: 10px;
+    border: 3px solid green;
+}
+
+.wagonNumber,
+.chosenWagonNumber{
+    font-size: 20px;
     text-align: center;
     margin: 0px 5px;
+    border: none;
+    background-color: #ffffff;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+
+
+.chosenWagonNumber{
+    border-bottom: 3px solid green;
+    font-weight: bolder;
 }
 
 .trainMaket{
@@ -30,33 +61,112 @@
     flex-direction: row;
     align-items:center;
     flex-wrap: wrap;
-    border-radius: 10px;
+    border-radius: 20%;
     display: flex;
     justify-content: space-around;
+    padding: 50px 10px;
+    position: relative;
+}
+
+.trainMaket::before{
+    content: "WC";
+    position: absolute;
+    font-size: 20px;
+    top: 20px;
+}
+
+.trainMaket::after{
+    content: "WC";
+    position: absolute;
+    font-size: 20px;
+    bottom: 20px;
 }
 
 .seatButton{
+    border-radius: 5px;
     width: 30px;
     height: 30px;
     margin: 3px;
     position: relative;
+    cursor: pointer;
 }
 
 .seatButton:nth-child(4n-2){
     margin-right: 30px;
 }
 
+.seatButton:nth-child(4n+2),
+.seatButton:nth-child(4n+1){
+    border: 2px solid;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
 
-.seatButton input{
-    width: 30px;
-    height: 30px;
+.seatButton:nth-child(4n+3),
+.seatButton:nth-child(4n+4){
+    border: 2px solid;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.seat,
+.chosenSeat{
+    width: 20px;
+    height: 20px;
+    margin: 5px 5px;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
 }
 
 
 .chosenSeat{
-    background-color: aqua;
+    width: 25px;
+    height: 25px;
+    margin: 3px;
+    background-color: green;
+    border-radius: 15px;
+    color: white;
 }
 
 .passangerInfo{
-    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    padding: 10px;
+    border: 3px solid green;
+    position: relative;
+}
+
+.passangerInfo::before{
+    content: "Ваші дані:";
+    position: absolute;
+    top: -23px;
+    left: 20px;
+    background-color: #ffffff;
+    padding: 3px;
+    border-radius: 10px;
+    border: 3px solid green;
+}
+
+.passangerInfo input{
+    font-size: 20px;
+    padding: 3px;
+}
+
+.passangerInfo p{
+    font-size: 20px;
+    margin: 5px 0px;
+}
+
+.buyButton{
+    font-size: 20px;
+    background-color: #ffffff;
+    padding: 5px;
+    font-weight: bolder;
+    color: #1a6e1a;
+    border: 3px solid #1a6e1a;
 }

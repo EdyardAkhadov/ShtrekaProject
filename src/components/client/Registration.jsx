@@ -9,6 +9,8 @@ import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister, selectIsAuth } from '../../redux/slices/auth';
 import { useForm } from "react-hook-form";
+import mainStyles from '../../styles/MainStyles.module.css'
+import Footer from "../footer/Footer";
 
 export default function Registration() {
     const isAuth = useSelector(selectIsAuth)
@@ -43,7 +45,7 @@ export default function Registration() {
     }
 
   return (
-    <div>
+    <div className={mainStyles.wrapper}>
        <Navbar/>
        <Paper classes={{ root: styles.root }}>
        <div className={styles.LogOrReg}>
@@ -109,6 +111,7 @@ export default function Registration() {
         </Button></div>
       </form>
     </Paper>
+    <div className={mainStyles.Footer}><Footer/></div>
     </div>
   )
 }

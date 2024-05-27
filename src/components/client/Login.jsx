@@ -9,6 +9,8 @@ import Button from "@mui/material/Button";
 import styles from "./Login.module.css";
 import {useForm} from 'react-hook-form'
 import { fetchAuth, selectIsAuth } from '../../redux/slices/auth';
+import mainStyles from '../../styles/MainStyles.module.css'
+import Footer from '../footer/Footer';
 
 export default function Login() {
   const isAuth = useSelector(selectIsAuth)
@@ -39,7 +41,7 @@ if(isAuth){
   return <Navigate to="/"/>;
 }
   return (
-    <div>
+    <div className={mainStyles.wrapper}>
        <Navbar/>
        <Paper classes={{ root: styles.root }}>
         <div className={styles.LogOrReg}>
@@ -83,6 +85,8 @@ if(isAuth){
         </div>
         </form>
     </Paper>
+    
+      <div className={mainStyles.Footer}><Footer/></div>
     </div>
   )
 }

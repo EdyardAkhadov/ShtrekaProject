@@ -18,8 +18,30 @@
 
 .route{
     padding: 10px;
-    border: 2px solid;
-    margin-top: 10px;
+    border-radius: 10px;
+    border: 3px solid rgb(16, 49, 16);
+    margin: 10px;
+    position: relative;
+    min-width: 330px;
+}
+
+.route p{
+    margin-bottom: 10px;
+}
+
+.trainNumber{
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: rgb(4, 4, 194);
+}
+
+.trainType{
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: rgb(111, 148, 38);
+
 }
 
 .line{
@@ -54,3 +76,33 @@
     background-color: #1a6e1a;
     border: 3px solid #1a6e1a;
 }
+
+.stationName{
+    font-size: 15px;
+    font-weight: bolder;
+    color: #1a6e1a;
+}
+
+.stationTime{
+    font-weight: bold;
+}
+
+.buyButton{
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #1a6e1a;
+    border: 3px solid #1a6e1a;
+    transition: all linear 0.2s;
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
+}
+
+.buyButton:hover{
+    color: #fff;
+    background-color: #1a6e1a;
+}
+

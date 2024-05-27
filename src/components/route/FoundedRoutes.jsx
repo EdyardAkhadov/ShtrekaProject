@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import styles from './FoundedRoutes.module.css'
+import mainStyles from '../../styles/MainStyles.module.css'
 import Navbar from '../navbar/NavBar'
 import axios from '../../axios'
 import Loader from '../loader/Loader'
@@ -9,6 +10,7 @@ import NotFound from '../router/NotFound'
 import TextField from "@mui/material/TextField";
 import { fetchRoutes } from '../../redux/slices/routes'
 import { useDispatch, useSelector } from 'react-redux'
+import Footer from '../footer/Footer'
 
 
 export default function FoundedRoutes() {
@@ -51,21 +53,20 @@ export default function FoundedRoutes() {
    
    if(routes.routes.status === "loaded"){
     return(
-      <div>
+      <div className={mainStyles.wrapper}>
         <Navbar/>
         <div className={styles.wrapper}>
           <h2>Квитки на {date}</h2>
           {routes.routes.items.map(route => (
             <div className={styles.route}>
-              <p>{route.trainNumber} {route.trainType}</p>
-              <p>{route.departureStation}-{route.arrivalStation}</p>
-              <div className={styles.routeStations}>
+              <p> <b className={styles.trainNumber}>{route.trainNumber}</b> <b className={styles.trainType}>{route.trainType}</b></p>
+               <div className={styles.routeStations}>
                 {route.stations.map(station => (
                     <div>
                       {station.name === fromStation ? 
                         <div>
-                          <p>{station.name}</p>
-                          <p>{station.time}</p>
+                          <p className={styles.stationName}>{station.name}</p>
+                          <p className={styles.stationTime}>{station.time}</p>
                           </div> 
                       : ""}
                     </div>
@@ -75,8 +76,8 @@ export default function FoundedRoutes() {
                     <div>                    
                       {station.name === toStation ? 
                         <div>
-                          <p>{station.name}</p>
-                          <p>{station.time}</p>
+                          <p className={styles.stationName}>{station.name}</p>
+                          <p className={styles.stationTime}>{station.time}</p>
                         </div> 
                         : ""}
                     </div>
@@ -85,22 +86,21 @@ export default function FoundedRoutes() {
               {route.placesInfo.map(places => (
                 <div>
                   <div>
-                   <p>Перший клас : {places.firstClass}</p>
+                   <p>Перший клас : <b>{places.firstClass} місць</b></p>
                     {route.stations.map(stationInfo => {
                         if(stationInfo.name === toStation){
                           return(
-                            <>Вартість : {places.ticketCostFirst + (places.firstCoff * distance)}</> 
+                            <p>Вартість : <b>{places.ticketCostFirst + (places.firstCoff * distance)} грн.</b></p> 
                           )
                         }
                       })}
                   </div>
                   <div>
-                   <p>Другий клас : {places.secondClass}</p>
+                   <p>Другий клас : <b>{places.secondClass} місць</b></p>
                     {route.stations.map(stationInfo => {
                           if(stationInfo.name === toStation){
-                            console.log(distance)
                             return(
-                               <>Вартість : {places.ticketCostSecond + (places.secondCoff * distance)}</>
+                               <p>Вартість : <b>{places.ticketCostSecond + (places.secondCoff * distance)} грн.</b></p>
                             )
                           }
                     })}
@@ -108,10 +108,12 @@ export default function FoundedRoutes() {
                   
                 </div>
               ))}
-              <Link to={`/route/${route._id}`}>Придбати</Link>
+              <Link className={styles.buyButton} to={`/route/${route._id}`}>Придбати</Link>
             </div>
           ))}
         </div>
+        
+        <div className={mainStyles.Footer}><Footer/></div>
       </div>
     )
    }

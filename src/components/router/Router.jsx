@@ -6,7 +6,6 @@ import NotFound from './NotFound'
 import Login from '../client/Login'
 import Registration from '../client/Registration'
 import { fetchAuthMe, selectIsAuth } from '../../redux/slices/auth';
-import ChooseTicket from '../chooseTicket/ChooseTicket';
 import StationPage from '../station/StationPage';
 import ClientPage from '../client/ClientPage';
 import ChooseRouteTicket from '../route/ChooseRouteTicket'
@@ -30,8 +29,7 @@ const Router = () => {
               <Route element={<Home/>} path="/"/>
               <Route element={<Login/>} path="/login"/>
               <Route element={<Registration/>} path="/registration"/>
-              <Route element={<ChooseTicket/>} path="/chooseticket"/>
-              <Route element={<StationPage/>} path="/station/:stationName/:date"/>
+               <Route element={<StationPage/>} path="/station/:stationName/:date"/>
               <Route element={<ChooseRouteTicket/>} path="/route/:routeFromStation/:routeToStation"/>
               <Route element={<FoundedRoutes/>} path="/routes/:fromStation/:toStation/:date"/>
               <Route element={<ClientPage/>} path="/aboutMe/:userId"/>

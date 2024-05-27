@@ -1,21 +1,48 @@
 .userInfo{
     padding: 0px 11%;
     text-align: center;
+    font-size: 20px;
+}
+
+.chosenButton,
+.Button{
+    background-color: white;
+    border: none;
+    margin: 10px;
+    font-size: 18px;
+    transition: all 0.2s linear;
+}
+
+.chosenButton,
+.Button:hover{
+    color: #15172b;
+    text-shadow: 0px 0px 1px #15172b;
+}
+.chosenButton{
+    border-bottom: 3px solid #1a6e1a;
+}
+
+.Button{
+}
+
+.userInfo p{
+    margin-bottom: 10px;
 }
 
 .QRCode{
-    border-left: 3px dotted;
+    border-left: 3px dotted #1a6e1a;
     padding: 5px;
 }
 
-.date{
+.date, .trainNumber{
     font-weight: bolder;
+    margin-bottom: 10px;
 }
 
 .ticket{
     display: flex;
     justify-content: space-between;
-    border: 3px solid;
+    border: 3px solid #1a6e1a;
     margin: 10px;
     min-width: 700px;
 }
@@ -26,7 +53,7 @@
     background-color: #1a6e1a;
     align-self: center;
     position: relative;
-    top: -25px;
+    top: -35px;
 }
 
 .line::before{
@@ -69,6 +96,13 @@
     flex-direction: column;
 }
 
+.mainTrainInfo{
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+    justify-content: space-between;
+}
+
 .routeInfo{
     width: 100%;
     display: flex;
@@ -79,18 +113,91 @@
 .titles{
     font-size: 13px;
     text-align: left;
-    margin-bottom: 5px;
 }
 
 .mainInfo{
-    max-width: 160px;
+    max-width: 150px;
     width: 100%;
     font-size: 20px;
     text-align: left;
     font-weight: bolder;
     margin-bottom: 15px;
+    color: #1a6e1a;
 }
+
+
 
 .routeDetails{
     text-align: left;
+    font-weight: bolder;
+}
+
+@media (max-width:750px) {
+
+.ticket{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 3px solid;
+    margin: 10px;
+    min-width: 0px;
+}
+
+.mainInfo{
+    font-size: 25px;
+}
+
+.routeInfo{
+    flex-direction: column;
+    align-items: center;
+    margin-left: -10px;
+    margin-top: 10px;
+}
+
+.routeInfo p{
+    text-align: center;
+}
+
+.mainTrainInfo{
+    height: 140px;
+}
+
+.line{
+    width: 3px;
+    height: 50px;
+    margin-top: 55px;
+}
+
+  .line::before{
+    left: -6px;
+    top: -6px;
+}
+
+.line::after{
+    right: -6px;
+    top: 49px;
+}
+
+.ticketContainer{
+    margin: 0;
+}
+
+.date,
+.trainNumber{
+    margin: 5px;
+    font-size: 15px;
+}
+
+.routeDetails{
+    margin: 5px;
+    font-size: 15px;
+}
+
+
+.QRCode{
+    border-left: none;
+    border-top: 3px dotted #1a6e1a;
+    padding: 5px;
+}
+
 }

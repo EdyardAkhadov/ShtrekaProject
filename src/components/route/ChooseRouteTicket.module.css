@@ -27,7 +27,7 @@
 
 .stationTableAfter{
     display: grid;
-    grid-template-columns: 15% 55% 30% ;
+    grid-template-columns: 15% 55% 30%;
     justify-content: space-around;
 }
 
@@ -193,3 +193,46 @@
     font-size: 15px;
 }
 
+@media (max-width:1200px) {
+
+    .stationInfoHeader{
+        display: none;
+    }
+
+    .stationTableAfter{
+        display: grid;
+        grid-template-columns: 100%;
+        justify-content: space-around;
+        margin-bottom: 10px;
+    }
+    .stationTable{
+        display: grid;
+        grid-template-columns: 100%;
+        justify-content: space-around;
+        margin-bottom: 10px;
+    }
+
+    .stationInfo{
+        font-weight: bolder;
+    }
+
+    .stationInfo:nth-child(1)::before{
+        content: "Номер станції: ";
+    }
+
+    .stationInfo:nth-child(2)::before{
+        content: "Назва станції: ";
+    }
+
+    .stationInfo:nth-child(3)::before{
+        content: "Час відправки зі станції: ";
+    }
+
+    .stationInfo:nth-child(1)::before,
+    .stationInfo:nth-child(2)::before,
+    .stationInfo:nth-child(3)::before{
+        font-weight: 200;
+        font-size: 15px;
+    }
+
+}
