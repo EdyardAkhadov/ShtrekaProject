@@ -23,9 +23,13 @@ const NavLinks = () => {
             <Link to="/" className={styles.Links__button}>Розклад</Link>
         </li>
         <li>
-            <Link to={`/aboutMe/${userData._id}`} className={styles.user__button}>{userData.firstName+" "+userData.secondName}</Link>
+            <Link to={`/aboutMe/${userData._id}`} 
+                  className={styles.user__button}>{userData.firstName+" "+userData.secondName}</Link>
         </li>
-        <li className={styles.Links__button}><button onClick={onClickLogout} className={styles.logout_button} variant="contained" color="error">
+        <li className={styles.Links__button}><button onClick={onClickLogout} 
+                                                      className={styles.logout_button} 
+                                                      variant="contained" 
+                                                      color="error">
                   Вийти
         </button></li>
   </ul>) : (

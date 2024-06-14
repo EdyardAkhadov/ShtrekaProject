@@ -1,6 +1,6 @@
 .wrapper{
     display: flex;
-    width: 100%;
+    width: 100vw;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -169,4 +169,13 @@
     font-weight: bolder;
     color: #1a6e1a;
     border: 3px solid #1a6e1a;
+}
+
+@media (max-width:898px) {
+
+
+    .passangerInfo{
+        margin: 0;
+        margin-top: 40px;
+    }
 }

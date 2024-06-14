@@ -33,7 +33,7 @@ const Router = () => {
               <Route element={<ChooseRouteTicket/>} path="/route/:routeFromStation/:routeToStation"/>
               <Route element={<FoundedRoutes/>} path="/routes/:fromStation/:toStation/:date"/>
               <Route element={<ClientPage/>} path="/aboutMe/:userId"/>
-              <Route element={<RoutePage/>} path="/route/:id"/>
+              <Route element={<RoutePage/>} path="/route/:id/:fromStation/:toStation/:date/:distance"/>
               <Route path='*' element={<NotFound/>}/>
           </Routes>
   )

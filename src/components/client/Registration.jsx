@@ -15,20 +15,13 @@ import Footer from "../footer/Footer";
 export default function Registration() {
     const isAuth = useSelector(selectIsAuth)
     const dispatch = useDispatch();
-    
     const {
       register, 
       handleSubmit, 
       formState:{errors, isValid},
     } = useForm({
-      defaultValues:{
-        secondName: '',
-        firstName: '',
-        phoneNumber: '',
-        password: '',
-      }
+      defaultValues:{ secondName: '', firstName: '', phoneNumber: '', password: '', }
     })
-  
     const onSubmit = async(values) => {
       const data = await dispatch(fetchRegister(values))
       if(!data.payload){
@@ -39,7 +32,6 @@ export default function Registration() {
         window.localStorage.setItem('token', data.payload.token);
       } 
     }
-    
     if(isAuth){
       return <Navigate to="/"/>;
     }
@@ -66,7 +58,6 @@ export default function Registration() {
             {...register('secondName', {required:'Вкажіть прізвище!'})}
             fullWidth/>
           </div>
-
           <div className={styles.inputs}>
             <TextField
             className={styles.field}
@@ -77,7 +68,6 @@ export default function Registration() {
             {...register('firstName', {required:'Вкажіть ім`я!'})}
             fullWidth/>
           </div>
-
           <div className={styles.inputs}>
             <TextField
             className={styles.field}
@@ -88,7 +78,6 @@ export default function Registration() {
             {...register('phoneNumber', {required:'Вкажіть номер телефону!'})}
             fullWidth/>
           </div>
-
           <div className={styles.inputs}>
             <TextField
             className={styles.field}
@@ -99,7 +88,6 @@ export default function Registration() {
             {...register('password', {required:'Вкажіть пароль!'})}
             fullWidth/>
           </div>
-
         <div className={styles.button} >
           <Button 
           style={{backgroundColor:"#254d09", color:"#ffffff"}} 

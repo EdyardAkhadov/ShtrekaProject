@@ -14,25 +14,17 @@ import Footer from '../footer/Footer'
 
 
 export default function FoundedRoutes() {
- 
    const routes = useSelector((state) => state.routes)
-
    const {fromStation, toStation, date} = useParams();
-
    const dispatch = useDispatch();
-   
-   
    const [fromStationDistance, setFromStationDistance] = useState();
    const [toStationDistance, setToStationDistance] = useState();
    const [distance, setDistance] = useState();
-   
-
    const userData = useSelector(state => state.auth.data);
- 
+
    useEffect(() => {
      dispatch(fetchRoutes({fromStation, toStation, date}));
    }, [])
-
    useEffect(() => {
       routes.routes.items.map(route => (
         route.stations.map(station => {
@@ -43,14 +35,8 @@ export default function FoundedRoutes() {
               setToStationDistance(station.distance)
             }
             setDistance(toStationDistance-fromStationDistance)
-        }
-        ) 
-      ))
-    
+        })))
    }, [routes.routes.status === "loaded"])
-
-
-   
    if(routes.routes.status === "loaded"){
     return(
       <div className={mainStyles.wrapper}>
@@ -59,7 +45,8 @@ export default function FoundedRoutes() {
           <h2>Квитки на {date}</h2>
           {routes.routes.items.map(route => (
             <div className={styles.route}>
-              <p> <b className={styles.trainNumber}>{route.trainNumber}</b> <b className={styles.trainType}>{route.trainType}</b></p>
+              <p> <b className={styles.trainNumber}>{route.trainNumber}</b> 
+                  <b className={styles.trainType}>{route.trainType}</b></p>
                <div className={styles.routeStations}>
                 {route.stations.map(station => (
                     <div>
@@ -90,37 +77,31 @@ export default function FoundedRoutes() {
                     {route.stations.map(stationInfo => {
                         if(stationInfo.name === toStation){
                           return(
-                            <p>Вартість : <b>{places.ticketCostFirst + (places.firstCoff * distance)} грн.</b></p> 
+                            <p>Вартість : 
+                              <b>{places.ticketCostFirst + (places.firstCoff * distance)} грн.</b></p> 
                           )
-                        }
-                      })}
+                        }})}
                   </div>
                   <div>
                    <p>Другий клас : <b>{places.secondClass} місць</b></p>
                     {route.stations.map(stationInfo => {
                           if(stationInfo.name === toStation){
                             return(
-                               <p>Вартість : <b>{places.ticketCostSecond + (places.secondCoff * distance)} грн.</b></p>
+                               <p>Вартість : 
+                                <b>{places.ticketCostSecond + (places.secondCoff * distance)} грн.</b></p>
                             )
-                          }
-                    })}
+                          }})}
                   </div>
-                  
                 </div>
               ))}
-              <Link className={styles.buyButton} to={`/route/${route._id}`}>Придбати</Link>
+              <Link className={styles.buyButton} to={`/route/${route._id}/${fromStation}/${toStation}/${date}/${distance}`}>Придбати</Link>
             </div>
           ))}
         </div>
-        
         <div className={mainStyles.Footer}><Footer/></div>
       </div>
-    )
-   }
+    )}
    else{
     return(
       <Loader/>
-    )
-   }
-  
-}
+    )}}

@@ -16,9 +16,7 @@ import dateIcon from '/public/dateIcon.png'
 import { render } from 'react-dom';
 
 export default function SearchBar() {
-
   const [choosenDate, setStartDate] = useState(new Date());
-    
   let day = choosenDate.getDate().toString();
   let mounth = choosenDate.getMonth();
   mounth+=1;
@@ -39,7 +37,6 @@ export default function SearchBar() {
   const [station2, setStation2] = useState('');
   const [isRoute, setIsRoute] = useState(false);
   
-
   return (
     <div className={styles.Searchbar} style={{backgroundImage:`url(${backgroundSearchbar})`}}>
       <div className={styles.Searchbar__items}>
@@ -59,15 +56,15 @@ export default function SearchBar() {
         </div>
         <div className={styles.Searchbar__gets}>
           <div className={styles.input_container__from}>
-
             <input id="from" type="text" placeholder=" " 
                    className={styles.input}  
                    onChange={e => setStation1(e.target.value)} value={station1}/>
             <img src={fromIcon} alt="fromIcon" className={styles.FromAndToIcons}/>
-            <label htmlFor="from" className= {isRoute ? styles.placeholder__no : styles.placeholder}>Вокзал</label>
-            <label htmlFor="from" className={isRoute ? styles.placeholder : styles.placeholder__no}>Звідки?</label>
+            <label htmlFor="from" 
+                   className= {isRoute ? styles.placeholder__no : styles.placeholder}>Вокзал</label>
+            <label htmlFor="from" 
+                   className={isRoute ? styles.placeholder : styles.placeholder__no}>Звідки?</label>
           </div>
-          
           <div className={isRoute ? styles.input_container__to : styles.input_container__to__no}> 
             <input id="to" type="text" placeholder=" " 
                    className={styles.input}  
@@ -75,7 +72,6 @@ export default function SearchBar() {
                    <img src={toIcon} alt="toIcon" className={styles.FromAndToIcons}/>
             <label htmlFor="to" className={styles.placeholder}>Куди?</label>
           </div>
-          
           <div className={datePickerStyles.datepicker_container}>
              <DatePicker
                 id="DatePicker"
@@ -90,10 +86,14 @@ export default function SearchBar() {
             <img src={dateIcon} alt="dateIcon" className={datePickerStyles.datepicker_icon}/>
             <label htmlFor="DatePicker" className={datePickerStyles.placeholder}>Дата:</label>
           </div>
-
-          <Link className={styles.link__button } to={`/station/${station1}/${date}`}><button className={isRoute ? styles.invisible : styles.Searchbar__button}>Пошук</button></Link>
-          <Link className={styles.link__button } to={`/routes/${station1}/${station2}/${date}`}><button className={isRoute ? styles.Searchbar__button: styles.invisible}>Пошук</button></Link>
-        
+          <Link className={styles.link__button } 
+                to={`/station/${station1}/${date}`}> 
+                <button className={isRoute ? styles.invisible : styles.Searchbar__button}>Пошук</button>
+          </Link>
+          <Link className={styles.link__button } 
+                to={`/routes/${station1}/${station2}/${date}`}>
+                  <button className={isRoute ? styles.Searchbar__button: styles.invisible}>Пошук</button>
+          </Link>
         </div>
       </div>
     </div>

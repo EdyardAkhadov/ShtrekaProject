@@ -101,6 +101,8 @@
     margin: 5px 0px;
     font-size: 18px;
     padding: 5px;
+    color: #034b03;
+    font-weight: bolder;
 }
 
 .dates{
@@ -192,6 +194,7 @@
 .submit:hover, .delete:hover{
     font-size: 15px;
 }
+
 
 @media (max-width:1200px) {
 

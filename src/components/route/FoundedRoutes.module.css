@@ -22,7 +22,7 @@
     border: 3px solid rgb(16, 49, 16);
     margin: 10px;
     position: relative;
-    min-width: 330px;
+    width: 500px;
 }
 
 .route p{
@@ -78,12 +78,14 @@
 }
 
 .stationName{
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bolder;
     color: #1a6e1a;
 }
 
 .stationTime{
+    
+    font-size: 18px;
     font-weight: bold;
 }
 

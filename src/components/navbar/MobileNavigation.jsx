@@ -9,7 +9,8 @@ export default function MobileNavigation() {
 
   return (
     <nav className={styles.MobileNavigation}>
-      <div className={isOpen ? styles.Button_menu_open : styles.Button_menu} onClick={() => setIsOpen(!isOpen)}>
+      <div className={isOpen ? styles.Button_menu_open : styles.Button_menu} 
+            onClick={() => setIsOpen(!isOpen)}>
         <div className={styles.Button_menu_item}></div>
       </div>
       {isOpen && <NavLinks />}

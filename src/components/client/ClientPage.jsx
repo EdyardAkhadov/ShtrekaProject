@@ -33,8 +33,8 @@ export default function ClientPage() {
             <Navbar/>
             <div className={styles.userInfo}>
                 <div className={styles.userData}>
-                    <p>Прізвище: {userData.firstName}</p>
-                    <p>Ім'я: {userData.secondName}</p>
+                    <p>Прізвище: {userData.secondName}</p>
+                    <p>Ім'я: {userData.firstName}</p>
                     <p>Номер телефону: {userData.phoneNumber}</p>
                 </div>
                 <div className={styles.Tickets}>

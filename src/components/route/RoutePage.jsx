@@ -14,23 +14,28 @@ import Footer from '../footer/Footer'
 
 
 export default function FoundedRoutes() {
- 
    const [isLoading, setLoading] = useState(true);
    const [route, setRoute] = useState();
-   const [wagon, setWagon] = useState(1);
+   const routeData = useParams()
+   
+   const [passengerName, setPassengerName] = useState();
+   const [passengerSecondName, setPassengerSecondName] = useState();
+   const [wagonNumber, setWagonNumber] = useState(1);
    const [wagonType, setWagonType] = useState();
+   const [seatNumber, setSeatNumber] = useState();
    const [seatType, setSeatType] = useState();
-   const [seat, setSeat] = useState();
-   const [name, setName] = useState();
-   const [secondName, setSecondName] = useState();
+   let fromStation = routeData.fromStation
+   let toStation = routeData.toStation
+   let date = routeData.date
+
    const routes = useSelector((state) => state.routes)
-   const routeId = useParams()
-   console.log(routeId.id)
+
+   let distance = routeData.distance
 
    useEffect(() => {
     const fetchResource = async () => {
         axios
-        .get(`/route/${routeId.id}`)
+        .get(`/route/${routeData.id}`)
         .then((res) => {
           setRoute(res.data);
           setTimeout(()=>{
@@ -43,10 +48,41 @@ export default function FoundedRoutes() {
     }
     fetchResource()
   }, [isLoading])
+  
 
 
-   
+  const onSubmit = async() =>{
+    try {
+      setSubmitLoading(true);
+
+      const fields = {
+        passengerName,
+        passengerSecondName,
+        date,
+        fromStation,
+        fromTime,
+        toStation,
+        toTime,
+        trainNumber,
+        wagonNumber,
+        wagonType,
+        seatNumber,
+        seatType,
+        price
+      }
+      alert("Квиток успішно куплений. Ви можете знайти його у вашому особистолму кабінеті!")
+      const{data} = await axios.post('/ticket', fields)
+
+      const id = data._id;
+      console.log(id);
+    } catch (err) {
+      console.warn(err);
+      alert("Не вдалося придбати квиток!");
+    }
+  }
+
    if(!isLoading){
+
     return(
       <div className={mainStyles.wrapper}>
         <Navbar/>
@@ -55,26 +91,26 @@ export default function FoundedRoutes() {
             <div  className={styles.wagonNumbers}>
               {route.places.map(wagons => (
                       <input 
-                            type="button" onClick={(e) => {setWagon(wagons.wagonNumber),
+                            type="button" onClick={(e) => {setWagonNumber(wagons.wagonNumber),
                                                            setWagonType(wagons.wagonType),
                                                            setSeatType(wagons.seatType),
-                                                          setSeat()}
+                                                           setSeatNumber()}
                             } 
-                            className={wagons.wagonNumber === wagon ? styles.chosenWagonNumber : styles.wagonNumber}  
+                            className={wagons.wagonNumber === wagonNumber ? styles.chosenWagonNumber : styles.wagonNumber}  
                             value={wagons.wagonNumber}/>
                 ))}
             </div>
               {route.places.map(wagons => (
-                    <div className={ wagons.wagonNumber === wagon ?  styles.trainMaket : ""} >
+                    <div className={ wagons.wagonNumber === wagonNumber ?  styles.trainMaket : ""} >
                     {wagons.seats.map(seats => {
-                      if(wagons.wagonNumber === wagon){
+                      if(wagons.wagonNumber === wagonNumber){
                         
                       return(
                         <div className={styles.seatButton}>
                             {seats.status==="free" ? 
                             <input 
-                                  className={ seats.number === seat ?  styles.chosenSeat : styles.seat}  
-                                  type="button" onClick={(e) => setSeat(seats.number)} 
+                                  className={ seats.number === seatNumber ?  styles.chosenSeat : styles.seat}  
+                                  type="button" onClick={(e) => setSeatNumber(seats.number)} 
                                   value={seats.number} /> : 
                             <input  type="button" disabled value={seats.number} />}
                         </div>
@@ -85,16 +121,26 @@ export default function FoundedRoutes() {
             </div>
             <div className={styles.passangerInfo}>
               <p>Прізвище: </p>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+              <input type="text" value={passengerName} onChange={(e) => setPassengerName(e.target.value)}/>
               <p>Ім'я:</p>
-              <input type="text" value={secondName} onChange={(e) => setSecondName(e.target.value)}/>
+              <input type="text" value={passengerSecondName} onChange={(e) => setPassengerSecondName(e.target.value)}/>
               <div className={styles.ticketInfo}>
-                <>{name ?  <p>Ім'я пасажира: {name}</p> : <></>}</>
-                <>{secondName ?  <p>Прізвище пасажира: {secondName}</p> : <></>}</>
-                <>{wagon ? <p>Номер вагона: {wagon}</p> : <></>}</>
+                <>{passengerName ?  <p>Ім'я пасажира: {passengerName}</p> : <></>}</>
+                <>{passengerSecondName ?  <p>Прізвище пасажира: {passengerSecondName}</p> : <></>}</>
+                <>{wagonNumber ? <p>Номер вагона: {wagonNumber}</p> : <></>}</>
                 <>{wagonType ? <p>Тип вагона : {wagonType} </p> : <></>}</>
                 <>{seatType  ? <p>Тип місця : {seatType}</p> : <></>}</>
-                <>{seat ?  <p>Номер місця: {seat}</p> : <></>}</>
+                <>{seatNumber ?  <p>Номер місця: {seatNumber}</p> : <></>}</>
+                  {
+                    route.placesInfo.map(info => {
+                      if(seatType === "Перший клас"){
+                        return <p>Ціна: {info.ticketCostFirst + (info.firstCoff * distance)}</p>
+                      }
+                      if(seatType === "Другий клас"){
+                        return <p>Ціна: {info.ticketCostSecond + (info.secondCoff * distance)}</p>
+                      }
+                    })
+                  }
               </div>
               <input className={styles.buyButton} type="button" value="Придбати квиток" />
             </div>

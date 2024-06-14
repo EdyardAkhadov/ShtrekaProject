@@ -57,13 +57,10 @@ export default function ChooseRouteTicket() {
   }
   
   const nowYear = nowDate.getFullYear();
-
- const today =  nowDay+"."+nowMonth+"."+nowYear;
+  const today =  nowDay+"."+nowMonth+"."+nowYear;
   const tomorrow =  nextDay+"."+nowMonth+"."+nowYear;
-
   const price = (parseInt(toPrice) - parseInt(fromPrice)).toString();
   
-
 useEffect(() => {
       const fetchResource = async () => {
           axios
